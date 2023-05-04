@@ -6,7 +6,7 @@
 
 .header{
   width: 100vw;
-  height: 10vh;
+  height: 14vh;
 }
 
 .flex{
@@ -71,25 +71,106 @@
   text-align: center;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Card */
+.container{
+  width: 85vw;
+  height: 75vh;
+  background-color: rgb(246, 248, 248);
+  border: 5px solid rgb(3, 97, 97);
+  border-radius: 40px;
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.container-admin{
+  flex-direction: column;
 }
 
-.card {
-  padding: 2em;
+.grid {
+  display: grid; 
+  grid-template-columns: 0.7fr 1.2fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "a b b"
+    "a b b"
+    ". . ."; 
+}
+.a { 
+  grid-area: a;
+  border-right: 3px solid rgb(3, 97, 97);
+  height: 74vh;
+  padding-top: 1.5rem;
+}
+.b { grid-area: b; }
+
+/* Card */
+.primary-list{
+  padding:0rem 0rem 0rem 2rem;
 }
 
-.read-the-docs {
-  color: #888;
+.secundary-list{
+  list-style: none;
+  padding-left: 3rem;
+}
+
+
+/*Registros*/
+.logo-admin{
+  height: 0.8rem;
+}
+
+#name{
+  border: 1px solid rgb(3, 97, 97);
+}
+
+.registro{
+  width: 54vw;
+  padding-left: 4rem;
+  padding-top: 1.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.column-admin{
+  width: 6vw;
+}
+
+.search{
+  padding-bottom: 1rem;
+}
+
+/*form*/
+.form{
+  flex-direction: column;
+  width: 30vw;
+}
+
+.form input{
+  width: 25rem;
+}
+
+.form label{
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.form Button{
+  width: 10rem;
+  padding-top:0.5rem;
+  margin-top:2rem;
+  margin-left:8rem
+}
+
+.div-form{
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 73vh;
+}
+
+.title-form{
+  color:rgb(3, 97, 97);
+  margin-right: 6rem;
+  margin-bottom:2rem
 }
