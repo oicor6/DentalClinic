@@ -1,4 +1,4 @@
-package com.example.ClinicaOdontologica.config;
+package com.example.ClinicaOdontologica.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,4 +10,7 @@ public class PasswordEncoder {
     public BCryptPasswordEncoder PasswordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
+    /*public static void main(String[] args) {
+        System.out.println("Ailen pass: 123456"+new BCryptPasswordEncoder().encode("123456"));}*/
 }

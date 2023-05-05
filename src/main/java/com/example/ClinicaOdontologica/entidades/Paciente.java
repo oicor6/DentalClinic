@@ -2,10 +2,10 @@ package com.example.ClinicaOdontologica.entidades;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
 import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
