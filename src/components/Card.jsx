@@ -20,7 +20,7 @@ const Card = () => {
                         </ul>
             </div>
             <div class="b">
-                <AgregarPaciente/>
+                <RegistrosOdont/>
             </div>
         </section>
     )
