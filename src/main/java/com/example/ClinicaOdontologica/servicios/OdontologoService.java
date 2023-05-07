@@ -29,6 +29,10 @@ public class OdontologoService {
         odontologoRepository.actualizar(matricula, id); }
     public Odontologo buscar(Integer id) throws NotFoundException {
         return odontologoRepository.findById(id).orElseThrow(() -> new NotFoundException("Odontologo no encontrado"));}
+
+    public List<Odontologo> findByName(String nombre){
+        return odontologoRepository.findByName(nombre);
+    }
     public List<Odontologo> listar(){ return odontologoRepository.findAll();}
 
 

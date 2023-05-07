@@ -31,6 +31,11 @@ public class OdontologoController {
         return new ResponseEntity<>(odontologoService.buscar(id), null, HttpStatus.OK);
     }
 
+    @GetMapping("/finByName/{nombre}")
+    public ResponseEntity<List<Odontologo>> findByName(@PathVariable String nombre) {
+        return new ResponseEntity<>(odontologoService.findByName(nombre), null, HttpStatus.OK);
+    }
+
     @PostMapping("/agregar")
     public ResponseEntity<String> agregar(@RequestBody Odontologo odontologo) throws ExistenteException, NotFoundException, BadRequestException {
         odontologoService.guardarOdontologo(odontologo);
