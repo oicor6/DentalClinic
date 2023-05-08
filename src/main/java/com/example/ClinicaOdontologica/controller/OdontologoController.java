@@ -5,6 +5,7 @@ import com.example.ClinicaOdontologica.exception.ExistenteException;
 import com.example.ClinicaOdontologica.exception.NotFoundException;
 import com.example.ClinicaOdontologica.exception.BadRequestException;
 import com.example.ClinicaOdontologica.servicios.OdontologoService;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +43,7 @@ public class OdontologoController {
         return new ResponseEntity<>("Odontologo agregado correctamente",null, HttpStatus.CREATED);
     }
 
+    @Transactional
     @PutMapping("/modificar/{matricula}/{id}")
     public ResponseEntity<String> modificar(@PathVariable String matricula,@PathVariable Integer id) throws NotFoundException {
         odontologoService.modificar(matricula, id);

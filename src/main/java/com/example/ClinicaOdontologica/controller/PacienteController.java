@@ -1,10 +1,12 @@
 package com.example.ClinicaOdontologica.controller;
 
+import com.example.ClinicaOdontologica.entidades.Odontologo;
 import com.example.ClinicaOdontologica.entidades.Paciente;
 import com.example.ClinicaOdontologica.exception.ExistenteException;
 import com.example.ClinicaOdontologica.exception.NotFoundException;
 import com.example.ClinicaOdontologica.exception.BadRequestException;
 import com.example.ClinicaOdontologica.servicios.PacienteService;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,12 +31,18 @@ public class PacienteController {
         return new ResponseEntity<>(pacienteService.buscar(id), null, HttpStatus.OK);
     }
 
+    @GetMapping("/finByName/{nombre}")
+    public ResponseEntity<List<Paciente>> findByName(@PathVariable String nombre) {
+        return new ResponseEntity<>(pacienteService.findByName(nombre), null, HttpStatus.OK);
+    }
+
     @PostMapping("/agregar")
     public ResponseEntity<String> agregar(@RequestBody Paciente paciente) throws ExistenteException, BadRequestException {
         pacienteService.guardarPaciente(paciente);
         return new ResponseEntity<>("Paciente agregado correctamente",null, HttpStatus.CREATED);
     }
 
+    @Transactional
     @PutMapping("/modificar/{domicilio}/{id}")
     public ResponseEntity<String> modificar(@PathVariable String domicilio, @PathVariable Integer id) throws NotFoundException {
         pacienteService.modificar(domicilio, id);

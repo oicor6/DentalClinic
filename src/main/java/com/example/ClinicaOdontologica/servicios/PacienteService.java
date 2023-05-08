@@ -1,5 +1,6 @@
 package com.example.ClinicaOdontologica.servicios;
 
+import com.example.ClinicaOdontologica.entidades.Odontologo;
 import com.example.ClinicaOdontologica.entidades.Paciente;
 import com.example.ClinicaOdontologica.exception.ExistenteException;
 import com.example.ClinicaOdontologica.exception.NotFoundException;
@@ -29,5 +30,8 @@ public class PacienteService {
         pacienteRepository.actualizar(domicilio, id); }
     public Paciente buscar(Integer id) throws NotFoundException {
         return pacienteRepository.findById(id).orElseThrow(() -> new NotFoundException("Paciente no encontrado"));}
+    public List<Paciente> findByName(String nombre){
+        return pacienteRepository.findByName(nombre);
+    }
     public List<Paciente> listar(){return pacienteRepository.findAll();}
 }
