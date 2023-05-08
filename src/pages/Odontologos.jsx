@@ -1,14 +1,10 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-import Card from '../components/Card'
+import CardOdont from '../components/CardOdont'
 
 const Odontologos = () => {
   return (
     <section class='flex container-admin'>
-      <Navbar/>
-      <Card/>
-      <Footer/>
+      <CardOdont/>
   </section>
   )
 }

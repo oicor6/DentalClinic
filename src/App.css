@@ -113,9 +113,18 @@
   padding-left: 3rem;
 }
 
+.admin-p{
+  color:rgb(3, 97, 97);
+  margin-bottom: 5rem
+}
+
+.img-admin{
+  height: 40vh;
+}
+
 
 /*Registros*/
-.logo-admin{
+.editar-borrar{
   height: 0.8rem;
 }
 
@@ -125,15 +134,22 @@
 
 .registro{
   width: 54vw;
+  max-height: 70vh;
   padding-left: 4rem;
-  padding-top: 1.5rem;
+  padding-top: 1rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+.scroll{
+  width: 54vw;
+  max-height: 70vh;
+  overflow: auto;
+}
+
 .column-admin{
-  width: 6vw;
+  width: 7vw;
 }
 
 .search{

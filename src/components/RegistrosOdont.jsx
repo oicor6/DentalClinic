@@ -3,12 +3,21 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { useContextGlobal } from './Utils/global.context';
 import axios from 'axios'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {faPenToSquare, faX} from "@fortawesome/free-solid-svg-icons";
+import {} from '@fortawesome/free-regular-svg-icons'
+import ModificarOdont from './ModificarOdont';
+
+library.add(faPenToSquare, faX);
 
 const RegistrosOdont = ({}) => {
   const {odontologos, getOdontologos,setOdontologos} = useContextGlobal();
   const [odont, setOdont] = useState('')
-  
   const [odontologosData, setOdontologosData] = useState([])
+  const [mostrarModificar, setMostrarModificar] = useState(false);
+  const [selectedOdontologo, setSelectedOdontologo] = useState(null);
+  
   const fetchData = async () => {
     await axios(`http://localhost:8080/odontologos/mostrar`)
     .then(res => setOdontologosData(res.data))
@@ -21,10 +30,31 @@ const RegistrosOdont = ({}) => {
   const buscar = () => {
     setOdontologos([])
     getOdontologos(odont)
-    console.log(odontologos)
+    }
+    
+    function eliminar(id) {
+      axios.delete(`http://localhost:8080/odontologos/eliminar/${id}`)
+        .then(response => {
+          setOdontologosData(odontologosData.filter(o => o.id !== id));
+          fetchData();
+        })
+        .catch(error => console.log(error));
     }
 
+  const handleClickModificar = (o) => {
+    setSelectedOdontologo(o);
+    setMostrarModificar(true);
+  }
+
+  const handleClickCancelar = () => {
+    setMostrarModificar(false);
+  }
+
     return (
+      <div>
+      {mostrarModificar ? (
+        <ModificarOdont onCancel={handleClickCancelar} selectedOdontologo={selectedOdontologo}/>
+      ) : (
         <section class='registro flex'>
           <div class='search'>
           <label for="name"></label>
@@ -32,6 +62,7 @@ const RegistrosOdont = ({}) => {
 onChange={event => { setOdont(event.target.value)}}/>
             <Button onClick={buscar} variant="light">Buscar</Button>{' '}
           </div>
+          <div class='scroll'>
           {odontologos.length === 0 ?
             <Table striped bordered hover>
                 <thead>
@@ -49,8 +80,8 @@ onChange={event => { setOdont(event.target.value)}}/>
                     <td>{o.apellido}</td>
                     <td>{o.matricula}</td>
                     <td>
-                    <Button variant="info"><img className='logo-admin' src='public\editar.png'></img></Button>{' '}
-                    <Button variant="danger"><img className='logo-admin' src='public\eliminar.png'></img></Button>{' '}
+                    <Button variant="info" onClick={() => handleClickModificar(o)}><FontAwesomeIcon icon={faPenToSquare}/></Button>{' '}
+                    <Button variant="danger" onClick={() => eliminar(o.id)}><FontAwesomeIcon icon={faX}/></Button>{' '}
                     </td>
                   </tr>))}
       </tbody>
@@ -78,7 +109,10 @@ onChange={event => { setOdont(event.target.value)}}/>
 </tbody>
 </Table>
     }
+    </div>
     </section>
+      )}
+    </div>
     )
   }
   
