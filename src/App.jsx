@@ -8,6 +8,7 @@ import Login from './pages/Login'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import Registro from './pages/Registro'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/login' element={<Login/>} />
+        <Route path='/registro' element={<Registro/>} />
         <Route path={routes.pacientes} element={<Pacientes/>} />
         <Route path='/administration' element={<Odontologos/>} />
         <Route path='*' element={<h1>Page not found</h1>}/>

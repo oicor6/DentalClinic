@@ -1,7 +1,22 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, {useState, useEffect, useRef} from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import  {useContextGlobal}  from '../components/Utils/global.context';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios';
 
 const Navbar = () => {
+  const {userDB, id} = useContextGlobal();
+  let location = useLocation()
+
+  const refresh = () => {
+    const cerrarSesion = window.confirm("¿Desea cerrar sesión?");
+    if (cerrarSesion) {
+      setUserDB({ ...userDB, name: '', lastName: '' ,email: '', login: false , rol: ''});
+      localStorage.clear();
+      location.replace('/');
+    }
+  }
   return (
     <section class="header">
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -14,9 +29,26 @@ const Navbar = () => {
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page" href="#">Ingresar</a>
-              <a class="nav-link active" aria-current="page" href="#">Registrarse</a>
+          <div class="navbar-nav">
+          {console.log(userDB)}
+            {userDB.rol == 'USER' ? (
+              <div class='avatar flex'>
+                <div class='flex'>
+                    <p className = 'hello'>Hola</p>
+                    <p className = 'nameUser'>{` ${', '} ${userDB.name} `}</p>
+                </div>
+                <Link to={'/'} onClick={()=> refresh()} style={{ fontWeight: 'bolder', textDecoration: 'none'}}><p><FontAwesomeIcon icon={faRightFromBracket} /></p></Link>
+                </div>
+              ) : ( userDB.rol == 'ADMIN' ?
+              <div class='avatar flex'>
+              <div class='flex'>
+                  <p className = 'hello'>Hola</p>
+                  <p className = 'nameUser'>{` ${', '} ${userDB.name} `}</p>
+              </div>
+              <Link to={'/'} onClick={()=> refresh()} style={{ fontWeight: 'bolder', textDecoration: 'none'}}><p><FontAwesomeIcon icon={faRightFromBracket} /></p></Link>
+              </div> : 
+                <Link to={'/login'} class="nav-link active"><h5>Ingresar</h5></Link>
+              )}
             </div>
           </div>
         </div>
@@ -26,8 +58,3 @@ const Navbar = () => {
 }
 
 export default Navbar
-/*       
-<Link to='/home'><h3>Home</h3></Link>
-        <Link to='/pacientes'><h3>Pacientes</h3></Link>
-        <Link to='/odontologos'><h3>Odontologos</h3></Link>
-        */

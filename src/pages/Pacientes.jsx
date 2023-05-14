@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
+import CardPaciente from '../components/pacientes/CardPaciente'
 
 const Pacientes = () => {
     
   return (
     <div>
-      <Navbar/>
-
-      <Footer/>
+      <CardPaciente/>
     </div>
   )
 }

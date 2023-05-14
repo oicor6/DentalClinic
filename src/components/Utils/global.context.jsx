@@ -9,6 +9,34 @@ const Context = ({ children }) => {
     const [odontologos, setOdontologos] =useState([])
     const [pacientes, setPacientes] =useState([])
     const [loading2,setLoading2] = useState(false)
+    const [userDB, setUserDB] = useState({
+      name: '',
+      email: '',
+      logIn: false,
+      rol: ''
+  })
+  const [userData, setUserData] = useState();
+
+const fetchData = async () => {
+  await axios(`http://localhost:8080/users/findByEmail/${userDB?.email}`)
+  .then(res => setUserData(res.data))
+  .catch((error) => console.log(error.message))
+}
+
+  useEffect(() => {
+    if (userDB.email !== ''){
+      fetchData()}
+  }, [userDB.email]);
+
+  useEffect(() => {
+    setUserDB({ ...userDB, name: userData?.name, email: userData?.email , rol: userData?.rol});
+  }, [userData]);
+
+const id = userData?.id;
+const [modal, setModal] = useState(false);
+const toggleModal = () => {
+  setModal(!modal);
+};
   
 
 const getOdontologos = (nameOdont) =>{
@@ -37,7 +65,7 @@ const getOdontologos = (nameOdont) =>{
   return (
     <ContextGlobal.Provider 
     value={{
-        odontologos,setOdontologos, getOdontologos, pacientes, setPacientes, getPacientes
+        odontologos,setOdontologos, getOdontologos, pacientes, setPacientes, getPacientes, userDB,setUserDB, userData, loading2,toggleModal,modal
       }}>
       {children}
     </ContextGlobal.Provider>

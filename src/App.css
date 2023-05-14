@@ -46,6 +46,17 @@
   height: 1.5rem;
 }
 
+.red{
+  color:red
+}
+
+.msg-error{
+  width: 22vw;
+  margin-left: 15rem;
+  padding-top:5px;
+  text-align: center;
+}
+
 /* Home */
 
 .title{
@@ -69,6 +80,60 @@
 .welcome p{
   font-size: 1.5rem;
   text-align: center;
+}
+
+.avatar{
+  width: 6vw;
+  justify-content: space-around;
+}
+
+.avatar p{
+  margin:0px
+}
+
+
+/*LOGIN*/
+.login{
+  width: 50vw;
+  height: 75vh;
+  background-color: rgb(246, 248, 248);
+  border: 5px solid rgb(3, 97, 97);
+  border-radius: 40px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 25vw
+}
+
+.login h1{
+  color:rgb(3, 97, 97)
+}
+
+.closeLogin{
+  margin-left: 19rem;
+  padding-bottom: 10px;
+}
+
+.form-login{
+  width: 50vw;
+}
+
+.input-login{
+  border-radius: 10px;
+  height: 2rem;
+  margin-top: 5px
+}
+
+.loginCampos{
+  width: 16.5vw;
+  flex-direction: column;
+  margin-left: 17vw
+}
+
+.cuenta{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Card */
