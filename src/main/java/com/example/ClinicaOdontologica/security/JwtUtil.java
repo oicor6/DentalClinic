@@ -13,7 +13,7 @@ import java.util.*;
 
 @Component
 public class JwtUtil {
-    private final static String ACCESS_TOKEN_SECRET = "=Equipo/uno$Digital-Booking+Camada+dos";
+    private final static String ACCESS_TOKEN_SECRET = "=Equipo/uno$Digital-Clinica+Camada+dos";
     private final static Long ACCESS_TOKEN_VALIDITY_SECONDS= 4_000_000L;
     //private final static String base64EncodedSecret = "cXdlcnR5cGFzc3dvcmQ=";
     //private final static byte[] decodedSecret = Base64.getDecoder().decode(base64EncodedSecret);

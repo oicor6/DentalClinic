@@ -20,4 +20,10 @@ public class UsersController {
         return new ResponseEntity<>("saved users",null, HttpStatus.CREATED);
 
     }
+
+    @GetMapping("/findByEmail/{email}")
+    public ResponseEntity<?> findByEmail(@PathVariable String email) {
+        return ResponseEntity.ok(usersService.findByEmail(email));
+    }
+
 }

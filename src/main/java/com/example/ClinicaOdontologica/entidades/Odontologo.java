@@ -20,6 +20,7 @@ public class Odontologo {
     private String nombre;
     private String apellido;
     private String matricula;
+    private Rol rol;
 
     @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "odontologo_id")

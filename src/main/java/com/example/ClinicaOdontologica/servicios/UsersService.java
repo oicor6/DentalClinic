@@ -11,11 +11,20 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class UsersService {
-    private UsersRepository usuarioRepository;
+    private UsersRepository usersRepository;
 
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    public void saveUser(Users users){
-       usuarioRepository.save(users);
-}
+    public void saveUser(Users user) {
+        Users users = new Users();
+        users.setName(user.getName());
+        users.setEmail(user.getEmail());
+        users.setPassword(passwordEncoder.encode(user.getPassword()));
+        users.setRol(user.getRol());
+        usersRepository.save(users);
+    }
+
+    public Users findByEmail(String email) {
+        return usersRepository.findByEmail(email);
+    }
 }

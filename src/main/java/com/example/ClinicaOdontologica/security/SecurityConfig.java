@@ -39,7 +39,7 @@ public class SecurityConfig{
                 .csrf().disable()
                 .authorizeRequests()
                 .requestMatchers(String.valueOf(PathRequest.toStaticResources().atCommonLocations())).permitAll()
-                .requestMatchers(new AntPathRequestMatcher("/turnos")).authenticated()
+                .requestMatchers(new AntPathRequestMatcher("/odontologos/*")).authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .httpBasic()
