@@ -40,6 +40,8 @@ public class SecurityConfig{
                 .authorizeRequests()
                 .requestMatchers(String.valueOf(PathRequest.toStaticResources().atCommonLocations())).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/odontologos/*")).authenticated()
+                .requestMatchers(new AntPathRequestMatcher("/pacientes/*")).authenticated()
+                .requestMatchers(new AntPathRequestMatcher("/turnos/*")).authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .httpBasic()
