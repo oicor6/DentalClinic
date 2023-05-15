@@ -12,10 +12,17 @@ const ModificarPaciente = ({ onCancel, selectedPaciente }) => {
     const paciente = {
       domicilio: domicilio
     };
-
+  
     try {
+      const token = localStorage.getItem('token');
       const response = await axios.put(
         `http://localhost:8080/pacientes/modificar/${paciente.domicilio}/${selectedPaciente.id}`,
+        {},
+        {
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        }
       );
       console.log(response.data);
       alert("Paciente modificado correctamente");
@@ -25,7 +32,7 @@ const ModificarPaciente = ({ onCancel, selectedPaciente }) => {
       console.error(error);
     }
   };
-
+  
   return (
     <div class='div-form flex'>
             <h2 class='title-form'>Modificar Odontólogo</h2>

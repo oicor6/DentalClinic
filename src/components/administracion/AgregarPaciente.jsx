@@ -21,11 +21,17 @@ const AgregarPaciente = () => {
       dni: dni,
       fechaDeAlta: fechaDeAlta
     };
-
+  
     try {
+      const token = localStorage.getItem('token');
       const response = await axios.post(
         `http://localhost:8080/pacientes/agregar`,
-        paciente
+        paciente,
+        {
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        }
       );
       console.log(response.data);
       alert("Paciente guardado correctamente");
@@ -37,7 +43,8 @@ const AgregarPaciente = () => {
     } catch (error) {
       console.error(error);
     }
-  };
+  }
+
     return (
             <div class='div-form flex'>
             <h2 class='title-form'>Agregar Paciente</h2>

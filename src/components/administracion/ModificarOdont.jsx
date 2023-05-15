@@ -11,12 +11,18 @@ const ModificarOdont = ({ onCancel, selectedOdontologo }) => {
     const odontologo = {
       matricula: matricula
     };
-
+  
     try {
+      const token = localStorage.getItem('token');
       const response = await axios.put(
         `http://localhost:8080/odontologos/modificar/${odontologo.matricula}/${selectedOdontologo.id}`,
+        {},
+        {
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        }
       );
-      console.log(response.data);
       alert("Odontólogo modificado correctamente");
       setMatricula("");
       window.location.reload();
@@ -24,7 +30,7 @@ const ModificarOdont = ({ onCancel, selectedOdontologo }) => {
       console.error(error);
     }
   };
-
+    
   return (
     <div class='div-form flex'>
             <h2 class='title-form'>Modificar Odontólogo</h2>

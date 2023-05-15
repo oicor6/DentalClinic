@@ -15,13 +15,18 @@ const AgregarOdont = () => {
       apellido: apellido,
       matricula: matricula
     };
-
+  
     try {
+      const token = localStorage.getItem('token');
       const response = await axios.post(
         `http://localhost:8080/odontologos/agregar`,
-        odontologo
+        odontologo,
+        {
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        }
       );
-      console.log(response.data);
       alert("Odontólogo guardado correctamente");
       setNombre("");
       setApellido("");

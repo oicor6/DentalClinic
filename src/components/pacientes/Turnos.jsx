@@ -5,13 +5,23 @@ import axios from 'axios'
 const Login = () => {
     const [turnos, setTurnos] = useState([])
     const fetchData = async () => {
-        await axios(`http://localhost:8080/turnos/mostrar`)
-        .then(res => setTurnos(res.data))
-        .catch((error) => console.error(error))
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get('http://localhost:8080/turnos/mostrar', {
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        });
+        setTurnos(response.data);
+      } catch (error) {
+        console.error(error);
       }
-        useEffect(() => {
-          fetchData()
-      },[])
+    };
+    
+    useEffect(() => {
+      fetchData();
+    }, []);
+
   return (
     <div class='scroll'>
             <Table striped bordered hover>
@@ -25,6 +35,7 @@ const Login = () => {
                 <tbody>
                   {turnos.map(t => (
                   <tr>
+                    {console.log(turnos)}
                     <td>{t.paciente}</td>
                     <td>{t.odontologo}</td>
                     <td>{t.fechaTurno}</td>

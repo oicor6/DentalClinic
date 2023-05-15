@@ -29,7 +29,7 @@ const fetchData = async () => {
   }, [userDB.email]);
 
   useEffect(() => {
-    setUserDB({ ...userDB, name: userData?.name, email: userData?.email , rol: userData?.rol});
+    setUserDB({ ...userDB, id:userData?.id, name: userData?.name, email: userData?.email , rol: userData?.rol});
   }, [userData]);
 
 const id = userData?.id;
@@ -39,28 +39,39 @@ const toggleModal = () => {
 };
   
 
-const getOdontologos = (nameOdont) =>{
-    const fetchData = async()=>{
-      setLoading2(true)
-    await axios(`http://localhost:8080/odontologos/finByName/${nameOdont}`)
-    .then(res => setOdontologos(res.data))
-    .catch((error) => console.error(error))
-    .finally(()=>setLoading2(false))
+const getOdontologos = async (nameOdont) => {
+  setLoading2(true);
+  try {
+    const token = localStorage.getItem('token');
+    const response = await axios.get(`http://localhost:8080/odontologos/finByName/${nameOdont}`, {
+      headers: {
+        'Authorization': 'Bearer ' + token
+      }
+    });
+    setOdontologos(response.data);
+  } catch (error) {
+    console.error(error);
+  } finally {
+    setLoading2(false);
   }
-  fetchData()
-  }
+}
   
-  const getPacientes = (namePaciente) =>{
-    const fetchData = async()=>{
-      setLoading2(true)
-    await axios(`http://localhost:8080/pacientes/finByName/${namePaciente}`)
-    .then(res => setPacientes(res.data))
-    .catch((error) => console.error(error))
-    .finally(()=>setLoading2(false))
+const getPacientes = async (namePaciente) => {
+  setLoading2(true);
+  try {
+    const token = localStorage.getItem('token');
+    const response = await axios.get(`http://localhost:8080/pacientes/finByName/${namePaciente}`, {
+      headers: {
+        'Authorization': 'Bearer ' + token
+      }
+    });
+    setPacientes(response.data);
+  } catch (error) {
+    console.error(error);
+  } finally {
+    setLoading2(false);
   }
-  fetchData()
-  }
-
+};
 
   return (
     <ContextGlobal.Provider 

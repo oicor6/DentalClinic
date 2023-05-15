@@ -1,5 +1,5 @@
 import React from 'react'
-import CardOdont from '../components/CardOdont'
+import CardOdont from '../components/administracion/CardOdont'
 
 const Odontologos = () => {
   return (

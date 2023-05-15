@@ -1,7 +1,7 @@
 import React, { useEffect, useState }  from 'react'
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
-import { useContextGlobal } from './Utils/global.context';
+import { useContextGlobal } from '../Utils/global.context';
 import axios from 'axios'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -18,31 +18,44 @@ const RegistrosPaciente = ({}) => {
   const [mostrarModificar, setMostrarModificar] = useState(false);
   
   const [selectedPaciente, setSelectedPaciente] = useState(null);
-  
-  const fetchData = async () => {
-    await axios(`http://localhost:8080/pacientes/mostrar`)
-    .then(res => setPacienteData(res.data))
-    .catch((error) => console.error(error))
+
+const fetchData = async () => {
+  try {
+    const response = await axios.get('http://localhost:8080/pacientes/mostrar', {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      }
+    });
+    setPacienteData(response.data);
+  } catch (error) {
+    console.error(error);
   }
-    useEffect(() => {
-      fetchData()
-  },[])
+};
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
 
   const buscar = () => {
     setPacientes([])
     getPacientes(paciente)
     console.log(pacientes)
     }
-
-    function eliminar(id) {
-      axios.delete(`http://localhost:8080/pacientes/eliminar/${id}`)
-        .then(response => {
-          setPacienteData(pacienteData.filter(p => p.id !== id));
-          fetchData();
-        })
-        .catch(error => console.log(error));
+    
+    const eliminar = async (id) => {
+      try {
+        await axios.delete(`http://localhost:8080/pacientes/eliminar/${id}`, {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+          }
+        });
+        setPacienteData(pacienteData.filter(p => p.id !== id));
+        fetchData();
+      } catch (error) {
+        console.log(error);
+      }
     }
-
     
   const handleClickModificar = (p) => {
     setSelectedPaciente(p)

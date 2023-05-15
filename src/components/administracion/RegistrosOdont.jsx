@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
-import { useContextGlobal } from './Utils/global.context';
+import { useContextGlobal } from '../Utils/global.context';
 import axios from 'axios'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -19,26 +19,40 @@ const RegistrosOdont = ({}) => {
   const [selectedOdontologo, setSelectedOdontologo] = useState(null);
   
   const fetchData = async () => {
-    await axios(`http://localhost:8080/odontologos/mostrar`)
-    .then(res => setOdontologosData(res.data))
-    .catch((error) => console.error(error))
-  }
+    try {
+      const response = await axios.get(`http://localhost:8080/odontologos/mostrar`, {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+      });
+      setOdontologosData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
     useEffect(() => {
-      fetchData()
-  },[])
+      fetchData();
+    }, []);
+  
 
   const buscar = () => {
     setOdontologos([])
     getOdontologos(odont)
     }
     
-    function eliminar(id) {
-      axios.delete(`http://localhost:8080/odontologos/eliminar/${id}`)
-        .then(response => {
-          setOdontologosData(odontologosData.filter(o => o.id !== id));
-          fetchData();
-        })
-        .catch(error => console.log(error));
+    const eliminar = async (id) => {
+      try {
+        await axios.delete(`http://localhost:8080/odontologos/eliminar/${id}`, {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+          }
+        });
+        setOdontologosData(pacienteData.filter(p => p.id !== id));
+        fetchData();
+      } catch (error) {
+        console.log(error);
+      }
     }
 
   const handleClickModificar = (o) => {

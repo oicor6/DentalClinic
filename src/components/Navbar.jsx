@@ -8,7 +8,7 @@ import axios from 'axios';
 const Navbar = () => {
   const {userDB, id} = useContextGlobal();
   let location = useLocation()
-
+  
   const refresh = () => {
     const cerrarSesion = window.confirm("¿Desea cerrar sesión?");
     if (cerrarSesion) {
@@ -30,7 +30,6 @@ const Navbar = () => {
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-          {console.log(userDB)}
             {userDB.rol == 'USER' ? (
               <div class='avatar flex'>
                 <div class='flex'>

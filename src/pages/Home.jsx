@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import  {useContextGlobal}  from '../components/Utils/global.context';
 import CardPaciente from '../components/pacientes/CardPaciente'
-import CardOdont from '../components/CardOdont'
+import CardOdont from '../components/administracion/CardOdont'
 
 const Home = () => {
   const {userDB, id} = useContextGlobal();
