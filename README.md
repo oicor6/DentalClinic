@@ -12,6 +12,8 @@ Dental Clinic es un sistema de gestión de citas para una clínica dental. El pr
     - Modificar la información de los pacientes/odontologos existentes en caso de errores o cambios.
     - Eliminar pacientes/odontologos de la base de datos.
 
+En las ramas, podras elegir FrontEnd o BackEnd. Cada rama tiene su respectivo código. 
+
 ## Tecnologías utilizadas
 - IDEs: Visual Studio Code, Intellij IDEA
 
