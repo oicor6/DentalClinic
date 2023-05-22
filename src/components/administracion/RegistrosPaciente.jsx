@@ -127,8 +127,8 @@ onChange={event => { setPaciente(event.target.value)}}/>
                     <td>{p.dni}</td>
                     <td>{p.fechaDeAlta}</td>
                     <td>
-                    <Button variant="info" onClick={handleClickModificar}><img className='logo-admin' src='public\editar.png'></img></Button>{' '}
-                    <Button variant="danger"><img className='logo-admin' src='public\eliminar.png'></img></Button>{' '}
+                    <Button variant="info" onClick={() => handleClickModificar(o)}><FontAwesomeIcon icon={faPenToSquare}/></Button>{' '}
+                    <Button variant="danger" onClick={() => eliminar(o.id)}><FontAwesomeIcon icon={faX}/></Button>{' '}
                     </td>
                   </tr>
         ))}

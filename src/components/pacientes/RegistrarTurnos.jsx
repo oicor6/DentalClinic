@@ -7,7 +7,6 @@ import  {useContextGlobal}  from '../Utils/global.context';
 
 const Login = () => {
     const [fechaTurno, setFechaTurno] = useState(null);
-    const [paciente, setPaciente] = useState("");
     const [odontologo, setOdontologo] = useState("");
     const [listOdont, setListOdont] = useState([]);
     const [odontSelected, setOdontSelected] = useState();
@@ -16,7 +15,7 @@ const Login = () => {
 
     const [turno, setTurno] = useState({
             fechaTurno: '',
-            paciente : userDB.id,
+            users: { id: userDB.id },
             odontologo : ''
     })
 
@@ -44,12 +43,6 @@ const Login = () => {
         const handleSubmit = async (event) => {
         event.preventDefault();
     
-        /*const turno = {
-            fechaTurno: fechaTurno,
-            paciente : {id: userDB.id},
-            odontologo : {id: Number(odontSelected)}
-        };*/
-    
         try {
             const token = localStorage.getItem('token');
             const response = await axios.post(
@@ -63,7 +56,6 @@ const Login = () => {
             );
             alert("Turno guardado correctamente");
             setFechaTurno("");
-            setPaciente({});
             setOdontologo({});
             } catch (error) {
                 console.log(turno)
@@ -71,16 +63,20 @@ const Login = () => {
         }
     };
 
+
+
       useEffect(()=>{
         if(odontSelected){
             setTurno({ ...turno, odontologo: {"id": Number(odontSelected)}})
         }
       },[odontSelected])
 
-      useEffect(()=>{
-        if(fechaTurno){
-        setTurno({ ...turno, fechaTurno: fechaTurno})
-      }}, [fechaTurno])
+      useEffect(() => {
+        if (fechaTurno) {
+          const formattedDate = fechaTurno.toISOString(); // Formato: "yyyy-MM-ddT00:00:00.000Z"
+          setTurno({ ...turno, fechaTurno: formattedDate });
+        }
+      }, [fechaTurno]);
       
 
     return (

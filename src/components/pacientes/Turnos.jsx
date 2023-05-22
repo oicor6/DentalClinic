@@ -36,8 +36,8 @@ const Login = () => {
                   {turnos.map(t => (
                   <tr>
                     {console.log(turnos)}
-                    <td>{t.paciente}</td>
-                    <td>{t.odontologo}</td>
+                    <td>{t.users && t.users.name}</td>
+                    <td>{t.odontologo && t.odontologo.nombre}</td>
                     <td>{t.fechaTurno}</td>
                   </tr>))}
       </tbody>

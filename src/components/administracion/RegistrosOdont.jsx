@@ -116,8 +116,8 @@ onChange={event => { setOdont(event.target.value)}}/>
         <td>{o.apellido}</td>
         <td>{o.matricula}</td>
         <td>
-        <Button variant="info"><img className='logo-admin' src='public\editar.png'></img></Button>{' '}
-        <Button variant="danger"><img className='logo-admin' src='public\eliminar.png'></img></Button>{' '}
+          <Button variant="info" onClick={() => handleClickModificar(o)}><FontAwesomeIcon icon={faPenToSquare}/></Button>{' '}
+          <Button variant="danger" onClick={() => eliminar(o.id)}><FontAwesomeIcon icon={faX}/></Button>{' '}
         </td>
       </tr>))}
 </tbody>

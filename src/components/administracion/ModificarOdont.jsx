@@ -25,7 +25,6 @@ const ModificarOdont = ({ onCancel, selectedOdontologo }) => {
       );
       alert("Odontólogo modificado correctamente");
       setMatricula("");
-      window.location.reload();
     } catch (error) {
       console.error(error);
     }

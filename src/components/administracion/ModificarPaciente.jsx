@@ -27,7 +27,6 @@ const ModificarPaciente = ({ onCancel, selectedPaciente }) => {
       console.log(response.data);
       alert("Paciente modificado correctamente");
       setDomicilio("");
-      window.location.reload();
     } catch (error) {
       console.error(error);
     }
