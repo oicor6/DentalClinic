@@ -14,7 +14,7 @@ Dental Clinic es un sistema de gestión de citas para una clínica dental. El pr
 
 ## Tecnologías utilizadas
 - IDEs: Visual Studio Code, Intellij IDEA
-- 
+
 El proyecto Dental Clinic utiliza las siguientes tecnologías:
 
 - Frontend: React, axios, React date-picker, fontawesome, bootstrap.
