@@ -17,8 +17,8 @@ public class Turno {
     private LocalDate fechaTurno;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "paciente_id")
-    private Paciente paciente;
+    @JoinColumn(name = "users_id")
+    private Users users;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "odontologo_id")
